@@ -1,0 +1,467 @@
+/* ============================================================
+   ШРИФТ
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+
+/* ============================================================
+   ПЕРЕМЕННЫЕ
+   ============================================================ */
+:root {
+  --bg:         #0f1115;
+  --bg-card:    #1a1d24;
+  --bg-hover:   rgba(108, 140, 255, 0.06);
+  --border:     #262a33;
+  --text:       #e6e8ee;
+  --text-dim:   #8b93a7;
+
+  --accent:     #6c8cff;
+  --accent-2:   #a06cff;
+  --gradient:   linear-gradient(135deg, #6c8cff, #a06cff);
+
+  --radius:     16px;
+  --radius-sm:  10px;
+  --max-width:  900px;
+}
+
+
+/* ============================================================
+   СБРОС
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* ============================================================
+   БАЗА
+   ============================================================ */
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  /* чтобы футер прижимался к низу на коротких страницах */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Мягкое свечение на фоне */
+body::before {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(108, 140, 255, 0.15), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+a {
+  color: var(--accent);
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--accent-2);
+}
+
+
+/* ============================================================
+   МЕНЮ
+   ============================================================ */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(15, 17, 21, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+}
+
+nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.3s;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient);
+  transition: width 0.3s;
+}
+
+nav a:hover {
+  color: var(--text);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a.active {
+  color: var(--text);
+}
+
+nav a.active::after {
+  width: 100%;
+}
+
+
+/* ============================================================
+   СЕКЦИЯ
+   ============================================================ */
+section {
+  position: relative;
+  z-index: 1;
+  flex: 1; /* растягивается и прижимает футер вниз */
+  padding: 80px 24px;
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
+  animation: fadeUp 0.6s ease both;
+}
+
+section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 32px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ============================================================
+   ПОРТФОЛИО
+   ============================================================ */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.project {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.project:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px rgba(108, 140, 255, 0.15);
+}
+
+.project:hover::before {
+  transform: scaleX(1);
+}
+
+.project h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.project p {
+  color: var(--text-dim);
+  font-size: 15px;
+}
+
+
+/* ============================================================
+   ОБО МНЕ
+   ============================================================ */
+.about {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.about img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 3px dashed var(--border);
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.about img:hover {
+  border-color: var(--accent);
+  transform: scale(1.03);
+}
+
+.about > div {
+  flex: 1;
+  min-width: 250px;
+}
+
+.about p {
+  color: var(--text-dim);
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+
+.about p:first-child {
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   НАВЫКИ — таблица
+   ============================================================ */
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.skills-table thead {
+  background: rgba(108, 140, 255, 0.08);
+}
+
+.skills-table th {
+  text-align: left;
+  padding: 18px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+}
+
+.skills-table td {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  color: var(--text);
+}
+
+.skills-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.skills-table tbody tr {
+  transition: background 0.2s;
+}
+
+.skills-table tbody tr:hover {
+  background: var(--bg-hover);
+}
+
+.skills-table td:first-child {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.bar {
+  width: 120px;
+  height: 8px;
+  background: var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  background: var(--gradient);
+  border-radius: 10px;
+  transition: width 0.8s ease;
+}
+
+
+/* ============================================================
+   ФУТЕР
+   ============================================================ */
+footer {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  background: rgba(15, 17, 21, 0.6);
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.footer-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.footer-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.3s, transform 0.3s;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: var(--text-dim);
+  opacity: 0.7;
+}
+
+
+/* ============================================================
+   АДАПТИВ
+   ============================================================ */
+@media (max-width: 600px) {
+  nav {
+    gap: 20px;
+    padding: 16px;
+  }
+
+  nav a {
+    font-size: 15px;
+  }
+
+  section {
+    padding: 50px 20px;
+  }
+
+  section h2 {
+    font-size: 28px;
+  }
+
+  .about {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .about img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .skills-table th,
+  .skills-table td {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .bar {
+    width: 70px;
+  }
+
+  footer {
+    padding: 32px 20px;
+  }
+
+  .footer-links {
+    gap: 18px;
+  }
+}
+
+
+/* ============================================================
+   СКРОЛЛБАР
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
