@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ясно — Прогноз погоды</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+
+    <div class="app-container">
+      <header class="header">
+        <div class="logo">
+          <img
+            src="https://openweathermap.org/img/wn/01d@2x.png"
+            alt="Логотип"
+            class="logo-icon"
+          />
+          <div class="logo-text">
+            <h1>ЯСНО</h1>
+            <p>Погода в вашем ритме</p>
+          </div>
+        </div>
+
+        <div class="header-controls">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Сменить тему"
+          >
+            <span class="theme-icon">🌙</span>
+          </button>
+          <div class="unit-toggle">
+            <button class="active">°C</button>
+            <button>°F</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="search-row">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            placeholder="Поиск города (например, Лондон)"
+            id="searchInput"
+          />
+        </div>
+        <button class="location-btn" id="locationBtn">
+          <span>📍</span> Моё местоположение
+        </button>
+      </div>
+
+      <section class="hero glass-card">
+        <div class="hero-content">
+          <h2 class="city-name" id="cityName">Загрузка...</h2>
+          <p class="date" id="currentDate">...</p>
+
+          <div class="temp-wrapper">
+            <div class="temp-main" id="currentTemp">--°</div>
+            <div class="temp-desc">
+              <h3 id="weatherDesc">...</h3>
+              <p id="feelsLike">Ощущается как --°</p>
+            </div>
+          </div>
+
+          <div class="temp-range">
+            <span id="tempMax">↑ --°</span>
+            <span id="tempMin">↓ --°</span>
+          </div>
+          <p class="hero-tip" id="heroTip">Загрузка данных...</p>
+        </div>
+
+        <div class="hero-image">
+          <img
+            src="https://openweathermap.org/img/wn/01d@2x.png"
+            alt="Погода"
+            class="big-weather-icon"
+            id="mainIcon"
+          />
+        </div>
+      </section>
+
+      <section class="forecast-section">
+        <div class="section-header">
+          <h2>Прогноз</h2>
+          <p>Планы меняются. Погода — без сюрпризов.</p>
+        </div>
+
+        <div class="forecast-grid">
+          <div class="hourly-forecast glass-card">
+            <div class="card-header">
+              <h3>По часам</h3>
+              <div class="slider-arrows">
+                <button id="prevHour" class="arrow-btn">←</button>
+                <button id="nextHour" class="arrow-btn">→</button>
+              </div>
+            </div>
+
+            <div class="hourly-scroll" id="hourlyScroll"></div>
+
+            <div class="chart-container">
+              <p class="chart-label">Температура в течение дня</p>
+              <svg
+                class="temp-chart"
+                viewBox="0 0 400 100"
+                preserveAspectRatio="none"
+              >
+                <path
+                  id="tempChartPath"
+                  d=""
+                  fill="none"
+                  stroke="url(#grad)"
+                  stroke-width="3"
+                />
+                <defs>
+                  <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#93c5fd" />
+                    <stop offset="100%" stop-color="#8b5cf6" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="chart-times" id="chartTimes"></div>
+            </div>
+          </div>
+
+          <div class="daily-forecast glass-card">
+            <div class="card-header">
+              <h3>На 5 дней</h3>
+              <span class="precip-label">Осадки</span>
+              <div class="slider-arrows vertical-arrows">
+                <button id="prevDay" class="arrow-btn">↑</button>
+                <button id="nextDay" class="arrow-btn">↓</button>
+              </div>
+            </div>
+
+            <div class="daily-list" id="dailyList"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-section">
+        <div class="section-header">
+          <h2>Детали погоды</h2>
+          <p>Всё, что важно за окном</p>
+        </div>
+
+        <div class="details-grid">
+          <div class="detail-card glass-card">
+            <div class="detail-header"><span>💧</span> Влажность</div>
+            <div class="detail-value" id="humidity">--%</div>
+            <p class="detail-desc">Текущий уровень</p>
+          </div>
+          <div class="detail-card glass-card">
+            <div class="detail-header"><span>💨</span> Ветер</div>
+            <div class="detail-value" id="wind">-- м/с</div>
+            <p class="detail-desc">Скорость ветра</p>
+          </div>
+          <div class="detail-card glass-card">
+            <div class="detail-header"><span>⏱️</span> Давление</div>
+            <div class="detail-value" id="pressure">----</div>
+            <p class="detail-desc">гПа</p>
+          </div>
+          <div class="detail-card glass-card">
+            <div class="detail-header"><span>☀️</span> УФ-индекс</div>
+            <div class="detail-value" id="uvIndex">--</div>
+            <p class="detail-desc">Уровень радиации</p>
+          </div>
+          <div class="detail-card glass-card">
+            <div class="detail-header"><span>👁️</span> Видимость</div>
+            <div class="detail-value">10 км</div>
+            <p class="detail-desc">Отличная видимость</p>
+          </div>
+          <div class="detail-card glass-card">
+            <div class="detail-header"><span>🌅</span> Восход / закат</div>
+            <div class="detail-value" id="sunTimes" style="font-size: 20px">
+              --:-- → --:--
+            </div>
+            <p class="detail-desc">Световой день</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span id="footerCity">Загрузка...</span>
+        <span>Ваш маленький прогноз большого дня</span>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
