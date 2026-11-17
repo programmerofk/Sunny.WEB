@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const prevDayBtn = document.getElementById("prevDay");
   const nextDayBtn = document.getElementById("nextDay");
 
-  // Прокрутка почасового прогноза
   nextHourBtn.addEventListener("click", () =>
     hourlyScroll.scrollBy({ left: 200, behavior: "smooth" })
   );
@@ -38,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     hourlyScroll.scrollBy({ left: -200, behavior: "smooth" })
   );
 
-  // Прокрутка прогноза на 5 дней
   nextDayBtn.addEventListener("click", () =>
     dailyList.scrollBy({ top: 60, behavior: "smooth" })
   );
@@ -160,7 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const tempsForChart = [];
       const timesForChart = [];
 
-      // ВЫВОДИМ 24 ЧАСА ВМЕСТО 8, ЧТОБЫ БЫЛО ЧТО ЛИСТАТЬ
       for (let i = startIndex; i < startIndex + 24; i++) {
         if (!hourly.time[i]) break;
 
@@ -186,7 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
         hourlyScroll.appendChild(card);
       }
 
-      // РИСУЕМ ГРАФИК
       const minTemp = Math.min(...tempsForChart);
       const maxTemp = Math.max(...tempsForChart);
       const tempRange = maxTemp - minTemp || 1;
@@ -203,7 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       document.getElementById("tempChartPath").setAttribute("d", pathData);
 
-      // Подписи под графиком (первое, среднее и последнее время)
       document.getElementById("chartTimes").innerHTML = `
               <span>${timesForChart[0]}</span>
               <span>${
