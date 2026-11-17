@@ -4,8 +4,9 @@
 
 ## 🔗 Демо
 
-- Посмотреть сайт: [sunnyweb-beta.vercel.app](#) _(добавьте ссылку после публикации)_
-
+- Посмотреть сайт: [sunnyweb-beta.vercel.app](#)
+- Посмотреть макет: [figma.com/design/sZNcgQNt0SnBTLZ6arEgwE/WeatherWeb?t=5uvGrdI86TZOonmT-0](#)
+- Презентация: [https://sokratic.ru/orders/oSmArAC5zs8Oz5KYBH3El](#)
 ## 🛠 Технологии
 
 - **HTML5** (семантическая разметка)
