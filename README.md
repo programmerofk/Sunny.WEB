@@ -6,7 +6,7 @@
 
 - Посмотреть сайт: [sunnyweb-beta.vercel.app](#)
 - Посмотреть макет: [figma.com/design/sZNcgQNt0SnBTLZ6arEgwE/WeatherWeb?t=5uvGrdI86TZOonmT-0](#)
-- Презентация: [(https://docs.google.com/presentation/d/1OsG4iGnc2dO9QWzWIJqqb9FWRcGI5v_J/edit?usp=sharing&ouid=112485997016080504210&rtpof=true&sd=true)](#)
+- Презентация: [https://docs.google.com/presentation/d/1OsG4iGnc2dO9QWzWIJqqb9FWRcGI5v_J/edit?usp=sharing&ouid=112485997016080504210&rtpof=true&sd=true](#)
 ## 🛠 Технологии
 
 - **HTML5** (семантическая разметка)
